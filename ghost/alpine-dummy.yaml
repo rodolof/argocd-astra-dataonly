@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    instance: ghost
+    volume: persistent
+  name: dummy
+spec:
+  containers:
+    - image: 'alpine:latest'
+      name: dummy
+      command: ["/bin/sh"]
+      args: ["-c", "trap : TERM INT; sleep infinity & wait"]
