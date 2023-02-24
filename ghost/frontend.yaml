@@ -95,7 +95,7 @@ spec:
                   name: ghost
                   key: ghost-password
             - name: GHOST_HOST
-              value: ghost
+              value: "ghost.astrademo.net"
             - name: GHOST_EMAIL
               value: "user@example.com"
             - name: GHOST_BLOG_TITLE
