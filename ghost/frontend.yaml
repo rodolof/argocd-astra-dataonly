@@ -94,6 +94,8 @@ spec:
                 secretKeyRef:
                   name: ghost
                   key: ghost-password
+            - name: GHOST_HOST
+              value: ghost
             - name: GHOST_EMAIL
               value: "user@example.com"
             - name: GHOST_BLOG_TITLE
