@@ -158,20 +158,6 @@ spec:
         - name: config
           configMap:
             name: ghost-mysql
-  volumeClaimTemplates:
-    - metadata:
-        name: data
-        labels: 
-          name: mysql
-          instance: ghost
-          component: primary
-          volume: persistent
-      spec:
-        accessModes:
-          - ReadWriteOnce
-        resources:
-          requests:
-            storage: "100Gi"
 ---
 apiVersion: v1
 kind: ConfigMap
