@@ -48,7 +48,7 @@ spec:
     matchLabels:
       name: ghost
       instance: ghost
-  replicas: 2
+  replicas: 3
   strategy:
     type: RollingUpdate
   template:
