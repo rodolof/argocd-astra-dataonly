@@ -59,6 +59,8 @@ spec:
   serviceName: ghost-mysql
   updateStrategy:
     type: RollingUpdate
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Delete
   template:
     metadata:
       labels:
@@ -68,7 +70,6 @@ spec:
     spec:
       securityContext:
         fsGroup: 1001
-      initContainers:
       containers:
         - name: mysql
           image: docker.io/bitnami/mysql:8.0.32-debian-11-r8
