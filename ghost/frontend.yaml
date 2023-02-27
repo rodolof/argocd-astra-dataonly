@@ -48,7 +48,7 @@ spec:
     matchLabels:
       name: ghost
       instance: ghost
-  replicas: 3
+  replicas: 2
   strategy:
     type: RollingUpdate
   template:
@@ -112,29 +112,6 @@ spec:
             - name: http
               containerPort: 2368
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: "http"
-              scheme: HTTP
-            initialDelaySeconds: 120
-            periodSeconds: 10
-            timeoutSeconds: 5
-            failureThreshold: 6
-            successThreshold: 1
-          readinessProbe:
-            httpGet:
-              path: /
-              port: "http"
-              scheme: HTTP
-            initialDelaySeconds: 30
-            periodSeconds: 5
-            timeoutSeconds: 3
-            failureThreshold: 6
-            successThreshold: 1
-          resources:
-            limits: {}
-            requests: {}
           volumeMounts:
             - name: ghost-data
               mountPath: /bitnami/ghost
