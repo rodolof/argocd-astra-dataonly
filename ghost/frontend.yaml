@@ -76,6 +76,8 @@ spec:
               value: "bitnami_ghost"
             - name: GHOST_DATABASE_USER
               value: "bn_ghost"
+            - name: GHOST_SKIP_BOOTSTRAP
+              value: "no"
             - name: GHOST_DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
