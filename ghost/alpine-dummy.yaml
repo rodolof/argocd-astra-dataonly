@@ -1,13 +1,23 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   labels:
     instance: ghost
     volume: persistent
   name: dummy
 spec:
-  containers:
-    - image: 'alpine:latest'
-      name: dummy
-      command: ["/bin/sh"]
-      args: ["-c", "trap : TERM INT; sleep infinity & wait"]
+  replicas: 1
+  selector:
+    matchLabels:
+      volume: persistent
+  template:
+    metadata:
+      labels:
+        instance: ghost
+        volume: persistent
+    spec:
+      containers:
+        - image: 'alpine:latest'
+          name: dummy
+          command: ["/bin/sh"]
+          args: ["-c", "trap : TERM INT; sleep infinity & wait"]
