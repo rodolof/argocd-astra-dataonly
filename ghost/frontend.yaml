@@ -68,6 +68,10 @@ spec:
             runAsNonRoot: true
             runAsUser: 1001
           env:
+            - name: BITNAMI_DEBUG
+              value: "false"
+            - name: ALLOW_EMPTY_PASSWORD
+              value: "yes"
             - name: GHOST_DATABASE_HOST
               value: "ghost-mysql"
             - name: GHOST_DATABASE_PORT_NUMBER
@@ -76,15 +80,30 @@ spec:
               value: "bitnami_ghost"
             - name: GHOST_DATABASE_USER
               value: "bn_ghost"
-            - name: GHOST_SKIP_BOOTSTRAP
-              value: "no"
             - name: GHOST_DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: ghost-mysql
                   key: mysql-password
+            - name: GHOST_PORT_NUMBER
+              value: "2368"
+            - name: GHOST_USERNAME
+              value: "user"
+            - name: GHOST_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ghost
+                  key: ghost-password
             - name: GHOST_HOST
               value: "ghost.astrademo.net/"
+            - name: GHOST_EMAIL
+              value: "user@example.com"
+            - name: GHOST_BLOG_TITLE
+              value: "User's Blog"
+            - name: GHOST_ENABLE_HTTPS
+              value: "no"
+            - name: GHOST_SKIP_BOOTSTRAP
+              value: "no"
           ports:
             - name: http
               containerPort: 2368
