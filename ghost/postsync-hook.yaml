@@ -34,7 +34,7 @@ spec:
               echo actoolkit: managing app $APPNAME in namespace $NAMESPACE on cluster $i;
               actoolkit manage app $APPNAME $NAMESPACE $i -l $LABEL;
               sleep 5;
-            fi &&
+            fi
           done &&
           for j in `actoolkit -o json list apps -f $APPNAME | jq -r '.items[].id'`;
           do
