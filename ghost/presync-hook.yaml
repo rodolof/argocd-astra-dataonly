@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: presync-astra-snapshot-
+  generateName: presync-astra-backup-
   annotations:
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
@@ -25,8 +25,8 @@ spec:
           python3 -m pip install actoolkit==2.6.1 &&
           for i in `actoolkit -o json list apps -f $APPNAME | jq -r '.items[].id'`;
           do
-            echo actoolkit: snapshotting app $APPNAME / $i;
-            actoolkit create snapshot $i argo-presync-`date "+%Y%m%d%H%M%S"`;
+            echo actoolkit: backing up app $APPNAME / $i;
+            actoolkit create backup $i argo-presync-`date "+%Y%m%d%H%M%S"`;
           done
         volumeMounts:
           - mountPath: /etc/astra-toolkits
