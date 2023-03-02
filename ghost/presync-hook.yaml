@@ -20,6 +20,7 @@ spec:
         - -c
         - >
           APPNAME=ghost-argocd &&
+          echo $ARGOCD_APP_REVISION &&
           apk add py3-pip jq &&
           python3 -m pip install --upgrade pip &&
           python3 -m pip install actoolkit==2.6.1 &&
