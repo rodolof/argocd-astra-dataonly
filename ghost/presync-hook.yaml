@@ -19,7 +19,7 @@ spec:
           - name: APPNAME
             value: "ghost-argocd"
           - name: GIT_SHA
-            value: $ARGOCD_APP_REVISION
+            value: "$ARGOCD_APP_REVISION"
           - name: ACTOOLKIT_VERSION
             value: "2.6.1"
         command: ["/bin/sh"]
