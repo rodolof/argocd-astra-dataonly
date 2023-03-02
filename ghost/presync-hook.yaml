@@ -28,7 +28,8 @@ spec:
           do
             echo actoolkit: backing up app $APPNAME / $i;
             actoolkit create backup $i argo-presync-`date "+%Y%m%d%H%M%S"`;
-          done
+          done &&
+          echo $ARGOCD_APP_REVISION
         volumeMounts:
           - mountPath: /etc/astra-toolkits
             name: astra-control-config
