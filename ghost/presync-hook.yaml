@@ -18,6 +18,8 @@ spec:
         env:
           - name: APPNAME
             value: "ghost-argocd"
+          - name: CLUSTERNAME
+            value: "uscentral1-cluster"
           - name: ACTOOLKIT_VERSION
             value: "2.6.2"
         command: ["/bin/sh"]
@@ -27,7 +29,7 @@ spec:
           apk add py3-pip jq &&
           python3 -m pip install --upgrade pip &&
           python3 -m pip install actoolkit==$ACTOOLKIT_VERSION &&
-          for i in `actoolkit -o json list apps -f $APPNAME | jq -r '.items[].id'`;
+          for i in `actoolkit -o json list apps -f $APPNAME -c $CLUSTERNAME | jq -r '.items[].id'`;
           do
             echo actoolkit: backing up app $APPNAME / $i;
             actoolkit create backup $i argo-presync-`date "+%Y%m%d%H%M%S"`;
