@@ -15,17 +15,23 @@ spec:
       containers:
       - name: alpine-actoolkit
         image: alpine:latest
+        env:
+          - name: APPNAME
+            value: "ghost-argocd"
+          - name: NAMESPACE
+            value: "ghost"
+          - name: LABEL
+            value: "volume=persistent"
+          - name: ACTOOLKIT_VERSION
+            value: "2.6.2"
         command: ["/bin/sh"]
         args:
         - -c
         - >
-          APPNAME=ghost-argocd &&
-          NAMESPACE=ghost &&
-          LABEL=volume=persistent &&
           apk add py3-pip jq &&
           python3 -m pip install --upgrade pip &&
-          python3 -m pip install actoolkit==2.6.1 &&
-          for i in `actoolkit -o json list namespaces -f $NAMESPACE | jq -r '.items[].clusterID'`;
+          python3 -m pip install actoolkit==$ACTOOLKIT_VERSION &&
+          for i in `actoolkit -o json list namespaces -m 60 -f $NAMESPACE | jq -r '.items[].clusterID'`;
           do
             app_exists=$(actoolkit -o json list apps -f $APPNAME -n $NAMESPACE -c $i | jq  -r '.items[].id' | wc -l) &&
             if [ ${app_exists} -gt 0 ] ; then

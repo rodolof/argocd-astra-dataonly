@@ -18,15 +18,12 @@ spec:
         env:
           - name: APPNAME
             value: "ghost-argocd"
-          - name: GIT_SHA
-            value: "$ARGOCD_APP_REVISION"
           - name: ACTOOLKIT_VERSION
-            value: "2.6.1"
+            value: "2.6.2"
         command: ["/bin/sh"]
         args:
         - -c
         - >
-          echo GIT_SHA: $GIT_SHA &&
           apk add py3-pip jq &&
           python3 -m pip install --upgrade pip &&
           python3 -m pip install actoolkit==$ACTOOLKIT_VERSION &&
