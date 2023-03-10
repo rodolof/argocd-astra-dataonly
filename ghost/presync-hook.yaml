@@ -19,7 +19,7 @@ spec:
           - name: APPNAME
             value: "ghost-argocd"
           - name: CLUSTERNAME
-            value: "dr-cluster"
+            value: "aks-eastus-cluster"
           - name: ACTOOLKIT_VERSION
             value: "2.6.2"
         command: ["/bin/sh"]
