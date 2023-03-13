@@ -17,7 +17,7 @@ spec:
         image: alpine:latest
         env:
           - name: APPNAME
-            value: "ghost-argocd"
+            value: "ghost-newns-argocd"
           - name: CLUSTERNAME
             value: "aks-eastus-cluster"
           - name: ACTOOLKIT_VERSION
